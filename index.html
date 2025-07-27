@@ -52,11 +52,11 @@
                 <div class="main-image">
                     <img src="logo.png" alt="펫쌤 로고" class="hero-logo">
                 </div>
-                <div class="floating-card">
+                <div class="floating-card" onclick="openModal()" style="cursor: pointer;">
                     <i class="fas fa-user-md"></i>
                     <span>전문가 직접 상담</span>
                 </div>
-                <div class="floating-card">
+                <div class="floating-card" onclick="openTodayCare()" style="cursor: pointer;">
                     <i class="fas fa-heart"></i>
                     <span>오늘의 케어</span>
                 </div>
@@ -401,75 +401,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- 상담 모달 -->
-    <div id="consultModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>무료 상담 신청</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form id="consultForm">
-                    <div class="form-group">
-                        <label for="name">이름 *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">연락처 *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="petType">반려동물/식물 종류</label>
-                        <select id="petType" name="petType">
-                            <option value="">선택해주세요</option>
-                            <option value="dog">강아지</option>
-                            <option value="cat">고양이</option>
-                            <option value="rabbit">토끼</option>
-                            <option value="hamster">햄스터</option>
-                            <option value="reptile">파충류</option>
-                            <option value="bird">조류</option>
-                            <option value="fish">어류</option>
-                            <option value="plant">식물</option>
-                            <option value="other">기타</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="consultType">상담 유형</label>
-                        <select id="consultType" name="consultType">
-                            <option value="">선택해주세요</option>
-                            <option value="health">건강 상담</option>
-                            <option value="behavior">행동 상담</option>
-                            <option value="nutrition">영양 상담</option>
-                            <option value="environment">환경 상담</option>
-                            <option value="emergency">응급 상담</option>
-                            <option value="other">기타</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">상담 내용 *</label>
-                        <textarea id="description" name="description" rows="5" placeholder="반려동물/식물의 상태나 궁금한 점을 자세히 적어주세요." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="imageUpload">사진 첨부 (선택사항)</label>
-                        <div class="image-upload-area">
-                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" multiple>
-                            <div class="upload-placeholder">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>클릭하여 사진을 업로드하세요</p>
-                                <small>최대 5장까지 업로드 가능</small>
-                            </div>
-                        </div>
-                        <div id="imagePreview" class="image-preview"></div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary">상담 신청하기</button>
-                        <button type="button" class="btn-secondary" onclick="closeModal()">취소</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- 상담 모달 -->
     <div id="consultModal" class="modal" style="display: none;">
