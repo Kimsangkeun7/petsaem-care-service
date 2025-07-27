@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개별 맞춤 - 펫쌤의 핵심가치</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .value-page {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .value-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .value-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .value-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .value-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        .value-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .value-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .value-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .value-section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .value-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .value-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .value-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .case-study {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .case-study h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .case-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .case-item h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .case-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .customization-process {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .process-step:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #ffd700;
+            color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .value-header h1 {
+                font-size: 2rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step:not(:last-child):after {
+                display: none;
+            }
+            
+            .value-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goHome()" style="cursor: pointer;">
+                <img src="logo.png" alt="펫쌤 로고" class="logo-image">
+                <span>펫쌤</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="index.html#services">서비스</a></li>
+                <li><a href="index.html#experts">전문가</a></li>
+                <li><a href="index.html#community">커뮤니티</a></li>
+                <li><a href="index.html#contact">문의</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 개별 맞춤 페이지 -->
+    <section class="value-page">
+        <div class="value-content">
+            <div class="value-header">
+                <div class="value-icon">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <h1>개별 맞춤</h1>
+                <p class="subtitle">일반론이 아닌 우리 아이만의 특수 상황 고려<br>개체별 맞춤형 케어 서비스</p>
+            </div>
+
+            <div class="value-sections">
+                <div class="value-section">
+                    <h3>🎯 개체별 특성 분석</h3>
+                    <p>모든 동물은 고유한 특성을 가지고 있습니다. 펫쌤은 이러한 개별 특성을 종합적으로 분석합니다.</p>
+                    <ul>
+                        <li>나이와 성별에 따른 차이</li>
+                        <li>품종별 특성과 유전적 요인</li>
+                        <li>기존 병력과 알레르기</li>
+                        <li>성격과 행동 패턴</li>
+                    </ul>
+                </div>
+
+                <div class="value-section">
+                    <h3>🏠 환경적 요인 고려</h3>
+                    <p>동물의 건강은 생활 환경에 크게 영향을 받습니다. 환경을 종합적으로 분석합니다.</p>
+                    <ul>
+                        <li>거주 환경과 공간 크기</li>
+                        <li>기온과 습도 조건</li>
+                        <li>다른 동물과의 관계</li>
+                        <li>일상 생활 패턴</li>
+                    </ul>
+                </div>
+
+                <div class="value-section">
+                    <h3>🍽️ 영양 상태 평가</h3>
+                        <p>현재 먹고 있는 사료부터 간식까지, 영양 상태를 종합적으로 평가합니다.</p>
+                    <ul>
+                        <li>현재 사료 성분 분석</li>
+                        <li>간식과 보조제 사용 현황</li>
+                        <li>식욕과 소화 상태</li>
+                        <li>체중 변화 추이</li>
+                    </ul>
+                </div>
+
+                <div class="value-section">
+                    <h3>📊 종합적 건강 평가</h3>
+                    <p>단순한 증상이 아닌, 전체적인 건강 상태를 종합적으로 평가합니다.</p>
+                    <ul>
+                        <li>신체 검사 결과</li>
+                        <li>혈액 검사 및 영상 검사</li>
+                        <li>행동 변화 관찰</li>
+                        <li>가족력과 유전적 요인</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>📋 맞춤 케어 사례</h3>
+                <div class="case-grid">
+                    <div class="case-item">
+                        <h4>고령 토끼 케이스</h4>
+                        <p>7살 된 네덜란드 드워프 토끼의 관절염 관리. 나이와 체중을 고려한 맞춤 운동법과 영양 처방을 제시했습니다.</p>
+                    </div>
+                    <div class="case-item">
+                        <h4>알레르기 강아지</h4>
+                        <p>피부 알레르기가 있는 골든 리트리버. 환경 요인과 식이 요법을 종합적으로 분석하여 개선 방안을 제시했습니다.</p>
+                    </div>
+                    <div class="case-item">
+                        <h4>스트레스 고양이</h4>
+                        <p>이사 후 스트레스로 식욕이 떨어진 페르시안 고양이. 환경 변화에 따른 행동 교정과 스트레스 해소법을 제시했습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="customization-process">
+                <h3>🔄 맞춤 케어 프로세스</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>상세 정보 수집</h4>
+                        <p>개체의 기본 정보, 병력, 환경 등을 종합적으로 수집</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>전문가 분석</h4>
+                        <p>수집된 정보를 바탕으로 전문가가 종합 분석</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>맞춤 방안 제시</h4>
+                        <p>개체별 특성에 맞는 맞춤형 케어 방안 제시</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>지속적 관리</h4>
+                        <p>변화 추이를 관찰하며 지속적인 관리와 조정</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html> 

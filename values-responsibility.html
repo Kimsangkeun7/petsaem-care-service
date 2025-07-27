@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책임감 - 펫쌤의 핵심가치</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .value-page {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .value-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .value-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .value-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .value-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        .value-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .value-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .value-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .value-section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .value-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .value-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .value-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .responsibility-pledge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .responsibility-pledge h3 {
+            color: #ffd700;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .pledge-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .responsibility-areas {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .responsibility-areas h3 {
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .area-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .area-item h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .area-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .follow-up-system {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .follow-up-system h3 {
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .follow-up-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .follow-up-step {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+        
+        .step-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .guarantee-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .guarantee-section h3 {
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .guarantee-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .guarantee-item h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .value-header h1 {
+                font-size: 2rem;
+            }
+            
+            .value-sections {
+                grid-template-columns: 1fr;
+            }
+            
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .follow-up-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goHome()" style="cursor: pointer;">
+                <img src="logo.png" alt="펫쌤 로고" class="logo-image">
+                <span>펫쌤</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="index.html#services">서비스</a></li>
+                <li><a href="index.html#experts">전문가</a></li>
+                <li><a href="index.html#community">커뮤니티</a></li>
+                <li><a href="index.html#contact">문의</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 책임감 페이지 -->
+    <section class="value-page">
+        <div class="value-content">
+            <div class="value-header">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>책임감</h1>
+                <p class="subtitle">전문가로서의 책임감 있는 상담<br>동물과 보호자를 위한 진정한 의무</p>
+            </div>
+
+            <div class="responsibility-pledge">
+                <h3>펫쌤의 책임감 서약</h3>
+                <div class="pledge-text">
+                    "우리는 단순한 정보 제공자가 아닌, 동물의 건강과 보호자의 마음을 책임지는 전문가입니다. 모든 상담과 조언에 대해 전문가로서의 책임을 다하며, 동물과 보호자의 행복을 위해 최선을 다하겠습니다."
+                </div>
+            </div>
+
+            <div class="value-sections">
+                <div class="value-section">
+                    <h3>🏥 의료적 책임</h3>
+                    <p>수의사로서의 전문적 의무를 다하며, 동물의 건강과 생명을 최우선으로 합니다.</p>
+                    <ul>
+                        <li>정확한 진단과 치료 방안 제시</li>
+                        <li>의학적 근거 기반의 조언</li>
+                        <li>응급 상황 시 적절한 대응</li>
+                        <li>지속적인 의료 지식 업데이트</li>
+                    </ul>
+                </div>
+
+                <div class="value-section">
+                    <h3>💝 윤리적 책임</h3>
+                    <p>동물의 복지와 보호자의 권리를 존중하며, 윤리적 가치를 바탕으로 상담합니다.</p>
+                    <ul>
+                        <li>동물 복지 우선 원칙</li>
+                        <li>보호자의 선택권 존중</li>
+                        <li>정직하고 투명한 소통</li>
+                        <li>개인정보 보호와 비밀유지</li>
+                    </ul>
+                </div>
+
+                <div class="value-section">
+                    <h3>📞 지속적 관리</h3>
+                    <p>일회성 상담이 아닌, 동물의 생애주기 전체를 함께하는 지속적인 관리 책임을 집니다.</p>
+                    <ul>
+                        <li>정기적인 상태 확인</li>
+                        <li>변화에 따른 계획 조정</li>
+                        <li>장기적인 건강 관리</li>
+                        <li>평생 동반자 관계 구축</li>
+                    </ul>
+                </div>
+
+                <div class="value-section">
+                    <h3>🎯 결과 책임</h3>
+                    <p>제시한 조언과 치료 방안에 대한 결과를 지속적으로 모니터링하고 책임집니다.</p>
+                    <ul>
+                        <li>상담 결과 추적 관리</li>
+                        <li>문제 발생 시 적극적 해결</li>
+                        <li>만족도 조사와 개선</li>
+                        <li>피드백 기반 서비스 향상</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="responsibility-areas">
+                <h3>📋 책임 영역</h3>
+                <div class="areas-grid">
+                    <div class="area-item">
+                        <h4>진단의 정확성</h4>
+                        <p>제공된 정보를 바탕으로 최대한 정확한 진단을 내리고, 불확실한 경우 명확히 밝힙니다.</p>
+                    </div>
+                    <div class="area-item">
+                        <h4>치료 방안의 적절성</h4>
+                        <p>개체의 특성과 상황에 맞는 최적의 치료 방안을 제시하고, 대안도 함께 제시합니다.</p>
+                    </div>
+                    <div class="area-item">
+                        <h4>응급 상황 대응</h4>
+                        <p>긴급한 상황 발생 시 즉시 대응하고, 필요시 병원 연계 등 적절한 조치를 취합니다.</p>
+                    </div>
+                    <div class="area-item">
+                        <h4>정보의 최신성</h4>
+                        <p>최신 수의학 정보와 연구 결과를 반영하여 정확하고 현대적인 조언을 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="follow-up-system">
+                <h3>🔄 책임감 있는 후속 관리</h3>
+                <div class="follow-up-steps">
+                    <div class="follow-up-step">
+                        <div class="step-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h4>정기 확인</h4>
+                        <p>상담 후 정기적으로 상태를 확인하고 변화를 추적합니다.</p>
+                    </div>
+                    <div class="follow-up-step">
+                        <div class="step-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>적극적 연락</h4>
+                        <p>문제 발생 시 보호자가 먼저 연락하기를 기다리지 않고 적극적으로 연락합니다.</p>
+                    </div>
+                    <div class="follow-up-step">
+                        <div class="step-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>결과 분석</h4>
+                        <p>제시한 방안의 효과를 분석하고 필요시 조정합니다.</p>
+                    </div>
+                    <div class="follow-up-step">
+                        <div class="step-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>지속적 지원</h4>
+                        <p>동물의 생애주기 전체를 함께하며 지속적인 지원을 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guarantee-section">
+                <h3>🛡️ 펫쌤의 보장</h3>
+                <div class="guarantee-grid">
+                    <div class="guarantee-item">
+                        <h4>전문성 보장</h4>
+                        <p>모든 상담은 현직 수의사가 직접 담당하며, 전문적 지식과 경험을 바탕으로 합니다.</p>
+                    </div>
+                    <div class="guarantee-item">
+                        <h4>책임감 보장</h4>
+                        <p>제시한 조언에 대해 전문가로서의 책임을 지며, 문제 발생 시 적극적으로 해결합니다.</p>
+                    </div>
+                    <div class="guarantee-item">
+                        <h4>지속성 보장</h4>
+                        <p>일회성이 아닌 장기적인 파트너십을 구축하여 지속적인 케어를 보장합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입/로그인 - 펫쌤</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .auth-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .auth-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+        }
+        
+        .auth-title {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        .auth-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: #f8fafc;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .auth-tab.active {
+            background: #1e3a8a;
+            color: white;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .auth-btn:hover {
+            background: #1e40af;
+        }
+        
+        .auth-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .social-login p {
+            color: #6b7280;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+        
+        .social-btn:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+        
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .auth-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .auth-footer a {
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-home:hover {
+            text-decoration: underline;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #1e3a8a;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        홈으로 돌아가기
+    </a>
+
+    <div class="auth-page">
+        <div class="auth-container">
+            <div class="auth-header">
+                <img src="logo.png" alt="펫쌤" class="auth-logo">
+                <h1 class="auth-title">펫쌤</h1>
+                <p class="auth-subtitle">반려동물과 식물을 위한 전문가 케어</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchTab('login')">로그인</button>
+                <button class="auth-tab" onclick="switchTab('signup')">회원가입</button>
+            </div>
+
+            <!-- 로그인 폼 -->
+            <form id="loginForm" class="auth-form active">
+                <div class="message" id="loginMessage"></div>
+                
+                <div class="form-group">
+                    <label for="loginEmail">이메일</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">비밀번호</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                
+                <button type="submit" class="auth-btn">로그인</button>
+                
+                <div class="loading" id="loginLoading">
+                    <div class="spinner"></div>
+                    <p>로그인 중...</p>
+                </div>
+            </form>
+
+            <!-- 회원가입 폼 -->
+            <form id="signupForm" class="auth-form">
+                <div class="message" id="signupMessage"></div>
+                
+                <div class="form-group">
+                    <label for="signupName">이름</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">이메일</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPhone">전화번호</label>
+                    <input type="tel" id="signupPhone" placeholder="010-1234-5678" required>
+                </div>
+                
+                <button type="submit" class="auth-btn">회원가입</button>
+                
+                <div class="loading" id="signupLoading">
+                    <div class="spinner"></div>
+                    <p>회원가입 중...</p>
+                </div>
+            </form>
+
+            <div class="social-login">
+                <p>또는</p>
+                <a href="#" class="social-btn" onclick="socialLogin('google')">
+                    <i class="fab fa-google"></i>
+                    Google로 계속하기
+                </a>
+                <a href="#" class="social-btn" onclick="socialLogin('kakao')">
+                    <i class="fas fa-comment"></i>
+                    카카오로 계속하기
+                </a>
+            </div>
+
+            <div class="auth-footer">
+                <p>회원가입 시 <a href="#" onclick="showTerms()">이용약관</a> 및 <a href="#" onclick="showPrivacy()">개인정보처리방침</a>에 동의합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html> 

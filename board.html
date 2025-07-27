@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>펫쌤 게시판</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="board.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goHome()" style="cursor: pointer;">
+                <img src="logo.png" alt="펫쌤" class="logo-image">
+                <span>펫쌤</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">홈</a>
+                <a href="board.html" class="active">게시판</a>
+                <a href="index.html#experts">전문가</a>
+                <a href="index.html#community">커뮤니티</a>
+                <a href="index.html#contact">문의</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 게시판 헤더 -->
+    <header class="board-header">
+        <div class="container">
+            <div class="board-info">
+                <div class="board-icon" id="boardIcon">🐰</div>
+                <div class="board-details">
+                    <h1 id="boardTitle">토끼 케어 게시판</h1>
+                    <p id="boardDescription">토끼 전문 수의사의 사육법, 건강 관리, 영양 상담</p>
+                </div>
+            </div>
+            <div class="board-actions">
+                <button class="btn-primary" onclick="openWriteModal()">
+                    <i class="fas fa-pen"></i>
+                    글쓰기
+                </button>
+                <button class="btn-secondary" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    뒤로가기
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 게시판 필터 -->
+    <div class="board-filters">
+        <div class="container">
+            <div class="filter-group">
+                <select id="categoryFilter">
+                    <option value="">전체 카테고리</option>
+                    <option value="health">건강 관리</option>
+                    <option value="nutrition">영양 상담</option>
+                    <option value="behavior">행동 교정</option>
+                    <option value="environment">환경 관리</option>
+                    <option value="emergency">응급 상황</option>
+                    <option value="training">훈련</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="latest">최신순</option>
+                    <option value="popular">인기순</option>
+                    <option value="views">조회순</option>
+                </select>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="검색어를 입력하세요...">
+                <button onclick="searchPosts()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게시글 목록 -->
+    <main class="board-content">
+        <div class="container">
+            <div class="posts-container" id="postsContainer">
+                <!-- 게시글들이 동적으로 생성됨 -->
+            </div>
+            
+            <!-- 페이지네이션 -->
+            <div class="pagination" id="pagination">
+                <!-- 페이지 번호들이 동적으로 생성됨 -->
+            </div>
+        </div>
+    </main>
+
+    <!-- 글쓰기 모달 -->
+    <div id="writeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>새 글 작성</h2>
+                <span class="close" onclick="closeWriteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="writeForm">
+                    <div class="form-group">
+                        <label for="postTitle">제목 *</label>
+                        <input type="text" id="postTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postCategory">카테고리</label>
+                        <select id="postCategory" name="category">
+                            <option value="health">건강 관리</option>
+                            <option value="nutrition">영양 상담</option>
+                            <option value="behavior">행동 교정</option>
+                            <option value="environment">환경 관리</option>
+                            <option value="emergency">응급 상황</option>
+                            <option value="training">훈련</option>
+                            <option value="general">일반</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">내용 *</label>
+                        <textarea id="postContent" name="content" rows="10" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postImages">이미지 첨부 (선택사항)</label>
+                        <input type="file" id="postImages" name="images" accept="image/*" multiple>
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">글 등록</button>
+                        <button type="button" class="btn-secondary" onclick="closeWriteModal()">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게시글 상세 모달 -->
+    <div id="postDetailModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 id="detailTitle">게시글 제목</h2>
+                <span class="close" onclick="closePostDetail()">&times;</span>
+            </div>
+            <div class="modal-body" id="detailContent">
+                <!-- 게시글 상세 내용이 동적으로 생성됨 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="board.js"></script>
+</body>
+</html> 

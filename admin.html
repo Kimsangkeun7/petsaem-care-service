@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>펫쌤 관리자 페이지</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header" onclick="goHome()" style="cursor: pointer;">
+                <img src="logo.png" alt="펫쌤 로고" class="admin-logo">
+                <h2>관리자</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            대시보드
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#consults">
+                            <i class="fas fa-comments"></i>
+                            상담 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#users">
+                            <i class="fas fa-users"></i>
+                            회원 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#payments">
+                            <i class="fas fa-credit-card"></i>
+                            결제 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#experts">
+                            <i class="fas fa-user-md"></i>
+                            전문가 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings">
+                            <i class="fas fa-cog"></i>
+                            설정
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- 헤더 -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>펫쌤 관리자 페이지</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <span>관리자님</span>
+                        <button class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            로그아웃
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 대시보드 섹션 -->
+            <section id="dashboard" class="dashboard-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>총 상담 건수</h3>
+                            <p class="stat-number" id="totalConsults">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>대기 중</h3>
+                            <p class="stat-number" id="pendingConsults">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>완료</h3>
+                            <p class="stat-number" id="completedConsults">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>총 회원수</h3>
+                            <p class="stat-number" id="totalUsers">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-consults">
+                    <h2>최근 상담 신청</h2>
+                    <div class="consults-table-container">
+                        <table class="consults-table">
+                            <thead>
+                                <tr>
+                                    <th>신청일</th>
+                                    <th>이름</th>
+                                    <th>연락처</th>
+                                    <th>반려동물</th>
+                                    <th>상담유형</th>
+                                    <th>상태</th>
+                                    <th>액션</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentConsultsTable">
+                                <!-- 동적으로 생성됨 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 상담 관리 섹션 -->
+            <section id="consults" class="consults-section" style="display: none;">
+                <div class="section-header">
+                    <h2>상담 관리</h2>
+                    <div class="filters">
+                        <select id="statusFilter">
+                            <option value="">전체 상태</option>
+                            <option value="pending">대기 중</option>
+                            <option value="in-progress">진행 중</option>
+                            <option value="completed">완료</option>
+                            <option value="cancelled">취소</option>
+                        </select>
+                        <select id="typeFilter">
+                            <option value="">전체 유형</option>
+                            <option value="health">건강 상담</option>
+                            <option value="behavior">행동 상담</option>
+                            <option value="nutrition">영양 상담</option>
+                            <option value="environment">환경 상담</option>
+                            <option value="emergency">응급 상담</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="consults-table-container">
+                    <table class="consults-table">
+                        <thead>
+                            <tr>
+                                <th>신청일</th>
+                                <th>이름</th>
+                                <th>연락처</th>
+                                <th>반려동물</th>
+                                <th>상담유형</th>
+                                <th>상태</th>
+                                <th>액션</th>
+                            </tr>
+                        </thead>
+                        <tbody id="consultsTable">
+                            <!-- 동적으로 생성됨 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 회원 관리 섹션 -->
+            <section id="users" class="users-section" style="display: none;">
+                <div class="section-header">
+                    <h2>회원 관리</h2>
+                    <div class="filters">
+                        <select id="userStatusFilter">
+                            <option value="">전체 상태</option>
+                            <option value="active">활성</option>
+                            <option value="inactive">비활성</option>
+                            <option value="suspended">정지</option>
+                        </select>
+                        <select id="userPlanFilter">
+                            <option value="">전체 요금제</option>
+                            <option value="free">무료</option>
+                            <option value="basic">기본 케어</option>
+                            <option value="premium">프리미엄 케어</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>가입일</th>
+                                <th>이름</th>
+                                <th>이메일</th>
+                                <th>전화번호</th>
+                                <th>요금제</th>
+                                <th>상태</th>
+                                <th>액션</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <!-- 동적으로 생성됨 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 결제 관리 섹션 -->
+            <section id="payments" class="payments-section" style="display: none;">
+                <div class="section-header">
+                    <h2>결제 관리</h2>
+                    <div class="filters">
+                        <select id="paymentStatusFilter">
+                            <option value="">전체 상태</option>
+                            <option value="completed">완료</option>
+                            <option value="pending">대기</option>
+                            <option value="failed">실패</option>
+                            <option value="refunded">환불</option>
+                        </select>
+                        <select id="paymentPlanFilter">
+                            <option value="">전체 요금제</option>
+                            <option value="basic_care_monthly">기본 케어</option>
+                            <option value="premium_care_monthly">프리미엄 케어</option>
+                            <option value="single_consult">단일 상담</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="payments-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>총 매출</h3>
+                            <p class="stat-number" id="totalRevenue">₩0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>이번 달 매출</h3>
+                            <p class="stat-number" id="monthlyRevenue">₩0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>구독 회원</h3>
+                            <p class="stat-number" id="subscribedUsers">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payments-table-container">
+                    <table class="payments-table">
+                        <thead>
+                            <tr>
+                                <th>결제일</th>
+                                <th>주문번호</th>
+                                <th>고객명</th>
+                                <th>요금제</th>
+                                <th>금액</th>
+                                <th>상태</th>
+                                <th>액션</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTable">
+                            <!-- 동적으로 생성됨 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 상담 상세 모달 -->
+    <div id="consultDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>상담 상세 정보</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="consultDetailContent">
+                <!-- 동적으로 생성됨 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>펫쌤 - 통합 반려동물·식물 케어 서비스</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goHome()" style="cursor: pointer;">
+                <img src="logo.png" alt="펫쌤 로고" class="logo-image">
+                <span>펫쌤</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">홈</a></li>
+                <li><a href="#services">서비스</a></li>
+                <li><a href="#experts">전문가</a></li>
+                <li><a href="#community">커뮤니티</a></li>
+                <li><a href="pricing.html">요금제</a></li>
+                <li><a href="auth.html">로그인</a></li>
+                <li><a href="#contact">문의</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 메인 섹션 -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-bg-image"></div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>모든 생명과의 따뜻한 동행<br><span class="highlight">생명케어의 새로운 패러다임</span></h1>
+                <p>AI가 아닌 전문가의 직접 상담으로<br>반려동물과 식물을 위한 진정한 케어를 제공합니다</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openModal()">무료 상담 시작</button>
+                    <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">서비스 둘러보기</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="main-image">
+                    <img src="logo.png" alt="펫쌤 로고" class="hero-logo">
+                </div>
+                <div class="floating-card">
+                    <i class="fas fa-user-md"></i>
+                    <span>전문가 직접 상담</span>
+                </div>
+                <div class="floating-card">
+                    <i class="fas fa-heart"></i>
+                    <span>오늘의 케어</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-animals">
+            <div class="animal-item cat">
+                <img src="cat.jpg" alt="고양이" class="animal-image">
+            </div>
+            <div class="animal-item hamster">
+                <img src="hamster.jpg" alt="햄스터" class="animal-image">
+            </div>
+            <div class="animal-item rabbit">
+                <img src="rabbit-care.jpg" alt="토끼" class="animal-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- 핵심 가치 섹션 -->
+    <section class="values">
+        <div class="container">
+            <h2>펫쌤의 핵심 가치</h2>
+            <div class="values-grid">
+                <div class="value-card" onclick="openValuePage('expertise')" style="cursor: pointer;">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>전문성</h3>
+                    <p>현직 수의사의 직접 경험과 상담<br>(AI나 검색 대체 불가)</p>
+                </div>
+                <div class="value-card" onclick="openValuePage('customization')" style="cursor: pointer;">
+                    <div class="value-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>개별 맞춤</h3>
+                    <p>일반론이 아닌 우리 아이만의<br>특수 상황 고려</p>
+                </div>
+                <div class="value-card" onclick="openValuePage('communication')" style="cursor: pointer;">
+                    <div class="value-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>인간적 소통</h3>
+                    <p>감정과 상황을 이해하는<br>따뜻한 전문가</p>
+                </div>
+                <div class="value-card" onclick="openValuePage('responsibility')" style="cursor: pointer;">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>책임감</h3>
+                    <p>전문가로서 책임지는<br>케어 상담</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 섹션 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>특수동물 + 식물 케어 서비스</h2>
+            <p class="section-subtitle">기존 업체들이 놓친 블루오션, 특수동물과 식물 케어의 전문가</p>
+            
+            <div class="services-grid">
+                <div class="service-card" data-service="rabbit">
+                    <div class="service-image">
+                        <img src="rabbit-care.jpg" alt="토끼 케어" class="service-img">
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3>토끼 케어 🐰</h3>
+                    <p>토끼 전문 수의사의 사육법, 건강 관리, 영양 상담</p>
+                    <div class="service-emoji">🐰</div>
+                </div>
+                <div class="service-card" data-service="hamster">
+                    <div class="service-image">
+                        <img src="hamster.jpg" alt="햄스터 케어" class="service-img">
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <h3>햄스터·기니피그 🐹</h3>
+                    <p>설치류 전문가의 맞춤 케어와 건강 관리</p>
+                    <div class="service-emoji">🐹</div>
+                </div>
+                <div class="service-card" data-service="reptile">
+                    <div class="service-image">
+                        <img src="bearded-dragon.jpg" alt="파충류 케어" class="service-img">
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3>파충류 케어 🦎</h3>
+                    <p>이구아나, 거북이, 뱀 등 파충류 전문 상담</p>
+                    <div class="service-emoji">🦎</div>
+                </div>
+                <div class="service-card" data-service="bird">
+                    <div class="service-image">
+                        <img src="cockatiel.jpg" alt="앵무새 케어" class="service-img">
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <h3>앵무새 케어 🦜</h3>
+                    <p>앵무새, 카나리아 등 조류 전문 건강 관리</p>
+                    <div class="service-emoji">🦜</div>
+                </div>
+                <div class="service-card" data-service="fish">
+                    <div class="service-image">
+                        <img src="koi-fish.jpg" alt="어류 케어" class="service-img">
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>어류 케어 🐠</h3>
+                    <p>관상어, 수족관 관리 전문 상담</p>
+                    <div class="service-emoji">🐠</div>
+                </div>
+                <div class="service-card" data-service="plant">
+                    <div class="service-image">
+                        <img src="plant-care.jpg" alt="식물 케어" class="service-img">
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>식물 케어 🌱</h3>
+                    <p>실내식물, 다육식물 전문 진단 및 관리</p>
+                    <div class="service-emoji">🌱</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 전문가 섹션 -->
+    <section id="experts" class="experts">
+        <div class="container">
+            <h2>3명의 의사진이 함께하는 통합 케어</h2>
+            <div class="experts-grid">
+                <div class="expert-card" data-expert="veterinarian">
+                    <div class="expert-avatar">
+                        <img src="vets.jpg" alt="수의사 팀" class="expert-image">
+                    </div>
+                    <h3>현직 수의사</h3>
+                    <p>동물 질병 진단 및 치료 상담</p>
+                    <ul>
+                        <li>특수동물 전문 진단</li>
+                        <li>응급처치 가이드</li>
+                        <li>예방접종 관리</li>
+                    </ul>
+                </div>
+                <div class="expert-card" data-expert="rabbit">
+                    <div class="expert-avatar">
+                        <img src="rabbit-care.jpg" alt="토끼 케어" class="expert-image">
+                    </div>
+                    <h3>토끼 전문가</h3>
+                    <p>토끼 전문 케어 및 건강 관리</p>
+                    <ul>
+                        <li>토끼 전문 진단</li>
+                        <li>사육법 상담</li>
+                        <li>영양 관리</li>
+                    </ul>
+                </div>
+                <div class="expert-card" data-expert="plant">
+                    <div class="expert-avatar">
+                        <img src="plant-care.jpg" alt="식물 케어" class="expert-image">
+                    </div>
+                    <h3>식물 전문가</h3>
+                    <p>실내원예, 식물 질병 진단 및 관리</p>
+                    <ul>
+                        <li>식물병리 진단</li>
+                        <li>계절별 관리법</li>
+                        <li>영양제 추천</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 차별화 섹션 -->
+    <section class="differentiation">
+        <div class="container">
+            <h2>AI와 검색은 모른다, 우리 아이만의 특별한 이야기</h2>
+            <div class="diff-content">
+                <div class="diff-left">
+                    <h3>기존 AI/검색의 한계</h3>
+                    <div class="diff-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <p>"강아지가 기침을 해요" → "일반적으로 기침의 원인은..." (뻔한 답변)</p>
+                    </div>
+                    <div class="diff-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <p>사진 속 미묘한 변화나 특수한 상황 인식 불가</p>
+                    </div>
+                    <div class="diff-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <p>보호자의 걱정과 불안에 대한 공감 부재</p>
+                    </div>
+                    <div class="diff-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <p>잘못된 정보 제공 시에도 책임지지 않음</p>
+                    </div>
+                </div>
+                <div class="diff-right">
+                    <h3>펫쌤의 전문가 직접 상담</h3>
+                    <div class="diff-item positive">
+                        <i class="fas fa-check-circle"></i>
+                        <p>"이 아이는 평소와 다르게 이런 기침을 하네요. 사진을 보니 목 부분에 이상이 있어 보입니다"</p>
+                    </div>
+                    <div class="diff-item positive">
+                        <i class="fas fa-check-circle"></i>
+                        <p>개체별 특수 상황(나이, 품종, 기존 병력, 환경)을 종합 고려한 정밀 분석</p>
+                    </div>
+                    <div class="diff-item positive">
+                        <i class="fas fa-check-circle"></i>
+                        <p>보호자의 마음까지 헤아리는 따뜻한 소통</p>
+                    </div>
+                    <div class="diff-item positive">
+                        <i class="fas fa-check-circle"></i>
+                        <p>전문가로서의 책임감 있는 상담</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 커뮤니티 섹션 -->
+    <section id="community" class="community">
+        <div class="container">
+            <h2>전문가 검증 커뮤니티</h2>
+            <div class="community-grid">
+                <div class="community-category">
+                    <h3>동물별 게시판</h3>
+                    <ul>
+                        <li><i class="fas fa-dog"></i> 개 게시판</li>
+                        <li><i class="fas fa-cat"></i> 고양이 게시판</li>
+                        <li><i class="fas fa-rabbit"></i> 토끼 게시판</li>
+                        <li><i class="fas fa-hamster"></i> 햄스터·기니피그 게시판</li>
+                        <li><i class="fas fa-dragon"></i> 파충류 게시판</li>
+                        <li><i class="fas fa-dove"></i> 조류 게시판</li>
+                        <li><i class="fas fa-fish"></i> 어류 게시판</li>
+                        <li><i class="fas fa-paw"></i> 기타 동물 게시판</li>
+                    </ul>
+                </div>
+                <div class="community-category">
+                    <h3>주제별 게시판</h3>
+                    <ul>
+                        <li><i class="fas fa-seedling"></i> 식물 케어 게시판</li>
+                        <li><i class="fas fa-exclamation-triangle"></i> 응급상황 게시판</li>
+                        <li><i class="fas fa-heart-broken"></i> 임종·추모 게시판</li>
+                        <li><i class="fas fa-comments"></i> 자유 게시판</li>
+                        <li><i class="fas fa-star"></i> 후기 게시판</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문의 섹션 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>문의하기</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>연락처 정보</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>010-4327-3669</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>peostar@naver.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24시간 운영</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>온라인 서비스</span>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="이름" required>
+                    <input type="email" placeholder="이메일" required>
+                    <input type="tel" placeholder="전화번호" required>
+                    <select required>
+                        <option value="">관심 서비스 선택</option>
+                        <option value="rabbit">토끼 케어</option>
+                        <option value="hamster">햄스터·기니피그</option>
+                        <option value="reptile">파충류 케어</option>
+                        <option value="bird">조류 케어</option>
+                        <option value="fish">어류 케어</option>
+                        <option value="plant">식물 케어</option>
+                    </select>
+                    <textarea placeholder="문의 내용을 입력해주세요" rows="5" required></textarea>
+                    <button type="submit" class="btn-primary">문의하기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="펫쌤 로고" class="footer-logo-image">
+                        <span>펫쌤</span>
+                    </div>
+                    <p>모든 생명과의 따뜻한 동행<br>생명케어의 새로운 패러다임</p>
+                </div>
+                <div class="footer-section">
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="index.html#services">전문가 상담</a></li>
+                        <li><a href="board.html">커뮤니티</a></li>
+                        <li><a href="index.html#experts">케어 가이드</a></li>
+                        <li><a href="pricing.html">전문 용품</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>회사 정보</h4>
+                    <ul>
+                        <li><a href="values-expertise.html">회사 소개</a></li>
+                        <li><a href="#" onclick="showTerms()">이용약관</a></li>
+                        <li><a href="#" onclick="showPrivacy()">개인정보처리방침</a></li>
+                        <li><a href="index.html#contact">채용 정보</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>소셜 미디어</h4>
+                    <div class="social-links">
+                        <a href="#" onclick="alert('페이스북 페이지 준비 중입니다.')"><i class="fab fa-facebook"></i></a>
+                        <a href="#" onclick="alert('인스타그램 계정 준비 중입니다.')"><i class="fab fa-instagram"></i></a>
+                        <a href="#" onclick="alert('유튜브 채널 준비 중입니다.')"><i class="fab fa-youtube"></i></a>
+                        <a href="#" onclick="alert('트위터 계정 준비 중입니다.')"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 펫쌤. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 상담 모달 -->
+    <div id="consultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>무료 상담 신청</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="consultForm">
+                    <div class="form-group">
+                        <label for="name">이름 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">연락처 *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="petType">반려동물/식물 종류</label>
+                        <select id="petType" name="petType">
+                            <option value="">선택해주세요</option>
+                            <option value="dog">강아지</option>
+                            <option value="cat">고양이</option>
+                            <option value="rabbit">토끼</option>
+                            <option value="hamster">햄스터</option>
+                            <option value="reptile">파충류</option>
+                            <option value="bird">조류</option>
+                            <option value="fish">어류</option>
+                            <option value="plant">식물</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultType">상담 유형</label>
+                        <select id="consultType" name="consultType">
+                            <option value="">선택해주세요</option>
+                            <option value="health">건강 상담</option>
+                            <option value="behavior">행동 상담</option>
+                            <option value="nutrition">영양 상담</option>
+                            <option value="environment">환경 상담</option>
+                            <option value="emergency">응급 상담</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">상담 내용 *</label>
+                        <textarea id="description" name="description" rows="5" placeholder="반려동물/식물의 상태나 궁금한 점을 자세히 적어주세요." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUpload">사진 첨부 (선택사항)</label>
+                        <div class="image-upload-area">
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" multiple>
+                            <div class="upload-placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>클릭하여 사진을 업로드하세요</p>
+                                <small>최대 5장까지 업로드 가능</small>
+                            </div>
+                        </div>
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">상담 신청하기</button>
+                        <button type="button" class="btn-secondary" onclick="closeModal()">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 상담 모달 -->
+    <div id="consultModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>무료 상담 신청</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="consultForm">
+                    <div class="form-group">
+                        <label for="consultName">이름 *</label>
+                        <input type="text" id="consultName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultPhone">전화번호 *</label>
+                        <input type="tel" id="consultPhone" placeholder="010-1234-5678" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultPetType">반려동물/식물 종류</label>
+                        <select id="consultPetType">
+                            <option value="">선택해주세요</option>
+                            <option value="dog">강아지</option>
+                            <option value="cat">고양이</option>
+                            <option value="rabbit">토끼</option>
+                            <option value="hamster">햄스터/기니피그</option>
+                            <option value="reptile">파충류</option>
+                            <option value="bird">조류</option>
+                            <option value="fish">어류</option>
+                            <option value="plant">식물</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultType">상담 유형</label>
+                        <select id="consultType">
+                            <option value="">선택해주세요</option>
+                            <option value="health">건강 상담</option>
+                            <option value="behavior">행동 상담</option>
+                            <option value="nutrition">영양 상담</option>
+                            <option value="environment">환경 상담</option>
+                            <option value="emergency">응급 상담</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultMessage">상담 내용 *</label>
+                        <textarea id="consultMessage" rows="4" placeholder="상담하고 싶은 내용을 자세히 적어주세요" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>사진 첨부 (선택사항)</label>
+                        <input type="file" id="consultImages" multiple accept="image/*">
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">상담 신청하기</button>
+                        <button type="button" class="btn-secondary" onclick="closeModal()">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

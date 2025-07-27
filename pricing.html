@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요금제 - 펫쌤</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pricing-page {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .pricing-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .pricing-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .pricing-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+        
+        .plan-period {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .pricing-card.featured .plan-features li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .plan-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .pricing-card.featured .plan-features li:before {
+            color: #333;
+        }
+        
+        .plan-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 500;
+        }
+        
+        .pricing-card.featured .plan-button {
+            background: #333;
+            color: white;
+            border: 1px solid #333;
+        }
+        
+        .plan-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .pricing-card.featured .plan-button:hover {
+            background: #555;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .pricing-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-info h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .info-icon {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .faq-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .faq-section h3 {
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .faq-answer {
+            line-height: 1.6;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-header h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goHome()" style="cursor: pointer;">
+                <img src="logo.png" alt="펫쌤 로고" class="logo-image">
+                <span>펫쌤</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="index.html#services">서비스</a></li>
+                <li><a href="index.html#experts">전문가</a></li>
+                <li><a href="index.html#community">커뮤니티</a></li>
+                <li><a href="index.html#contact">문의</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 요금제 페이지 -->
+    <section class="pricing-page">
+        <div class="pricing-content">
+            <div class="pricing-header">
+                <h1>요금제</h1>
+                <p class="subtitle">우리 아이를 위한 맞춤형 케어 서비스<br>합리적인 가격으로 전문가 상담을 경험하세요</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- 무료 플랜 -->
+                <div class="pricing-card">
+                    <div class="plan-name">무료 회원</div>
+                    <div class="plan-price">
+                        <span class="currency">₩</span>0
+                    </div>
+                    <div class="plan-period">월</div>
+                    <ul class="plan-features">
+                        <li>전문가 검증 정보 열람</li>
+                        <li>커뮤니티 기본 참여</li>
+                        <li>월 1회 기본 상담</li>
+                        <li>이메일 뉴스레터</li>
+                        <li>기본 케어 가이드</li>
+                    </ul>
+                    <a href="index.html#contact" class="plan-button">무료 가입</a>
+                </div>
+
+                <!-- 기본 플랜 -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">인기</div>
+                    <div class="plan-name">기본 케어</div>
+                    <div class="plan-price">
+                        <span class="currency">₩</span>3,900
+                    </div>
+                    <div class="plan-period">월</div>
+                    <ul class="plan-features">
+                        <li>수의사 무제한 기본 상담</li>
+                        <li>의료진 우선 답변 (24시간 내)</li>
+                        <li>전문가 추천 제품 할인 혜택</li>
+                        <li>수의사가 설계한 맞춤 케어 알림</li>
+                        <li>월 2회 심화 상담</li>
+                        <li>전용 게시판 이용</li>
+                        <li>정기 건강 체크업</li>
+                    </ul>
+                    <div id="paypal-button-container-basic"></div>
+                    <a href="index.html#contact" class="plan-button">문의하기</a>
+                </div>
+
+                <!-- 프리미엄 플랜 -->
+                <div class="pricing-card">
+                    <div class="plan-name">프리미엄 케어</div>
+                    <div class="plan-price">
+                        <span class="currency">₩</span>9,900
+                    </div>
+                    <div class="plan-period">월</div>
+                    <ul class="plan-features">
+                        <li>개인 전담 수의사 배정</li>
+                        <li>의료진 24시간 긴급 상담</li>
+                        <li>수의사 정기 건강 체크업</li>
+                        <li>영상 상담 1회/월</li>
+                        <li>전문가 직접 제작 교육 콘텐츠</li>
+                        <li>우선 예약 서비스</li>
+                        <li>VIP 전용 게시판</li>
+                        <li>맞춤 영양제 추천</li>
+                    </ul>
+                    <div id="paypal-button-container-premium"></div>
+                    <a href="index.html#contact" class="plan-button">문의하기</a>
+                </div>
+            </div>
+
+            <!-- 단일 상담 서비스 -->
+            <div class="pricing-info">
+                <h3>💡 단일 상담 서비스</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h4>수의사 직접 상담</h4>
+                        <p>1회 10,000원<br>AI 아닌 전문가 직접 분석</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <h4>특수동물 전문 상담</h4>
+                        <p>1회 15,000원<br>토끼, 파충류, 조류 전문</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4>수의사 심층 진단</h4>
+                        <p>1회 20,000원<br>전문가 직접 영상 분석</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>호스피스 케어 패키지</h4>
+                        <p>30만원 (1개월)<br>임종 케어 전문 서비스</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h3>❓ 자주 묻는 질문</h3>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 요금제는 언제든 변경할 수 있나요?</div>
+                    <div class="faq-answer">A: 네, 언제든지 요금제를 변경할 수 있습니다. 상위 요금제로 업그레이드 시 즉시 적용되며, 하위 요금제로 변경 시 다음 결제일부터 적용됩니다.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 해지 시 환불이 가능한가요?</div>
+                    <div class="faq-answer">A: 월 구독의 경우 사용하지 않은 기간에 대해서는 환불이 가능합니다. 단일 상담 서비스는 이용 전까지 환불 가능합니다.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 여러 마리의 반려동물이 있어도 같은 요금제로 이용할 수 있나요?</div>
+                    <div class="faq-answer">A: 기본 케어 플랜은 2마리까지, 프리미엄 케어는 3마리까지 포함됩니다. 추가 반려동물은 마리당 월 1,000원의 추가 요금이 있습니다.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 응급 상황 시에도 상담이 가능한가요?</div>
+                    <div class="faq-answer">A: 프리미엄 케어 플랜 가입자는 24시간 긴급 상담이 가능합니다. 기본 케어 플랜은 평일 오전 9시~오후 6시에 상담 가능합니다.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=KRW"></script>
+    <script src="pricing.js"></script>
+</body>
+</html> 
