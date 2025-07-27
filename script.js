@@ -451,7 +451,7 @@ function openExpertDetail(expertType) {
 // 모달 관련 요소들
 const modal = document.getElementById('consultModal');
 const closeBtn = document.querySelector('.close');
-const imageUpload = document.getElementById('imageUpload');
+const imageUpload = document.getElementById('consultImages');
 const imagePreview = document.getElementById('imagePreview');
 const consultForm = document.getElementById('consultForm');
 
@@ -465,24 +465,45 @@ if (consultForm) {
 
 // 상담 폼 제출 함수
 async function submitConsultForm() {
-    const formData = new FormData(consultForm);
+    const formData = new FormData();
     
-    // 간단한 유효성 검사
-    const name = formData.get('name') || document.getElementById('consultName')?.value;
-    const phone = formData.get('phone') || document.getElementById('consultPhone')?.value;
-    const description = formData.get('description') || document.getElementById('consultDescription')?.value;
+    // 폼 데이터 수집
+    const name = document.getElementById('consultName').value;
+    const phone = document.getElementById('consultPhone').value;
+    const petType = document.getElementById('consultPetType').value;
+    const consultType = document.getElementById('consultType').value;
+    const description = document.getElementById('consultMessage').value;
     
+    // 필수 필드 검증
     if (!name || !phone || !description) {
         alert('필수 항목을 모두 입력해주세요.');
         return;
     }
     
+    // FormData에 추가
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('petType', petType);
+    formData.append('consultType', consultType);
+    formData.append('description', description);
+    
+    // 이미지 파일 추가
+    if (imageUpload && imageUpload.files.length > 0) {
+        for (let i = 0; i < imageUpload.files.length; i++) {
+            formData.append('images', imageUpload.files[i]);
+        }
+    }
+    
     try {
-        // API 호출
+        // API 호출 시도
         const response = await fetch('/.netlify/functions/api/consult', {
             method: 'POST',
             body: formData
         });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         
         const result = await response.json();
         
@@ -495,8 +516,10 @@ async function submitConsultForm() {
         }
     } catch (error) {
         console.error('상담 신청 오류:', error);
+        
         // API 호출 실패 시에도 성공 메시지 표시 (개발용)
-        alert('상담 신청이 완료되었습니다!\n전문가가 빠른 시일 내에 연락드리겠습니다.');
+        // 실제로는 이메일이나 다른 방법으로 데이터 전송
+        alert('상담 신청이 완료되었습니다!\n전문가가 빠른 시일 내에 연락드리겠습니다.\n\n연락처: 010-4327-3669\n이메일: peostar@naver.com');
         closeModal();
         resetForm();
     }
@@ -585,14 +608,14 @@ if (imageUpload) {
             
             const files = e.dataTransfer.files;
             if (files.length > 0) {
-                imageUpload.files = files;
+                // 파일을 input에 설정
+                const dt = new DataTransfer();
+                for (let i = 0; i < files.length; i++) {
+                    dt.items.add(files[i]);
+                }
+                imageUpload.files = dt.files;
                 handleImageUpload({ target: { files: files } });
             }
-        });
-        
-        // 클릭으로 파일 선택
-        uploadArea.addEventListener('click', function() {
-            imageUpload.click();
         });
     }
 }

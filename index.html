@@ -451,7 +451,14 @@
                     </div>
                     <div class="form-group">
                         <label>사진 첨부 (선택사항)</label>
-                        <input type="file" id="consultImages" multiple accept="image/*">
+                        <div class="image-upload-area" onclick="document.getElementById('consultImages').click()">
+                            <input type="file" id="consultImages" multiple accept="image/*" style="display: none;">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>클릭하여 사진을 업로드하세요</p>
+                                <small>최대 5장까지 업로드 가능</small>
+                            </div>
+                        </div>
                         <div id="imagePreview" class="image-preview"></div>
                     </div>
                     <div class="form-actions">
